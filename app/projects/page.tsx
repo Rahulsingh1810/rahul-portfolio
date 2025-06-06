@@ -45,7 +45,7 @@ export default function Projects() {
       longDescription:
         "AirCursor demonstrates the power of computer vision in creating intuitive human-computer interfaces. Using Python and OpenCV, this application tracks hand movements to control the mouse cursor, includes a virtual painting feature, and even counts exercise repetitions.",
       tech: ["Python", "OpenCV", "Computer Vision", "MediaPipe", "NumPy"],
-      image: "/placeholder.svg?height=300&width=500",
+      image: "/virtual_mouse.png",
       github: "#",
       demo: "#",
       featured: false,
