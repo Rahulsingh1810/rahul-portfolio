@@ -46,8 +46,8 @@ export default function Projects() {
         "AirCursor demonstrates the power of computer vision in creating intuitive human-computer interfaces. Using Python and OpenCV, this application tracks hand movements to control the mouse cursor, includes a virtual painting feature, and even counts exercise repetitions.",
       tech: ["Python", "OpenCV", "Computer Vision", "MediaPipe", "NumPy"],
       image: "/virtual_mouse.png",
-      github: "#",
-      demo: "#",
+      github: "https://github.com/Rahulsingh1810/aircursor",
+      demo: "https://aircursor-demo.vercel.app/",
       featured: false,
       category: "Desktop Application",
       status: "Completed",
@@ -210,21 +210,25 @@ export default function Projects() {
                     </div>
 
                     <div className="flex gap-4">
-                      <Button
-                        size="sm"
-                        variant="outline"
-                        className="border-purple-500 text-purple-400 hover:bg-purple-500/10"
-                      >
-                        <Github className="mr-2 h-4 w-4" />
-                        Code
-                      </Button>
-                      <Button
-                        size="sm"
-                        className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700"
-                      >
-                        <ExternalLink className="mr-2 h-4 w-4" />
-                        Live Demo
-                      </Button>
+                      <a href={project.github} target="_blank" rel="noopener noreferrer">
+                        <Button
+                          size="sm"
+                          variant="outline"
+                          className="border-purple-500 text-purple-400 hover:bg-purple-500/10"
+                        >
+                          <Github className="mr-2 h-4 w-4" />
+                          Code
+                        </Button>
+                      </a>
+                      <a href={project.demo} target="_blank" rel="noopener noreferrer">
+                        <Button
+                          size="sm"
+                          className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700"
+                        >
+                          <ExternalLink className="mr-2 h-4 w-4" />
+                          Live Demo
+                        </Button>
+                      </a>
                     </div>
                   </CardContent>
                 </Card>

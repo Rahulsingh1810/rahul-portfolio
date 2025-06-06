@@ -109,7 +109,7 @@ const OrbitingIcon = ({ icon: Icon, radius = 100, duration = 10, delay = 0 }) =>
   )
 }
 
-const TypewriterText = ({ text, delay = 0 }) => {
+const TypewriterText = ({ text, delay = 1000 }) => {
   const [displayText, setDisplayText] = useState("")
   const [currentIndex, setCurrentIndex] = useState(0)
 
@@ -121,7 +121,7 @@ const TypewriterText = ({ text, delay = 0 }) => {
           setCurrentIndex((prev) => prev + 1)
         }
       },
-      delay + currentIndex * 50, // Reduced from 100 to 50 for faster typing
+      delay + currentIndex * 1, // Reduced from 100 to 50 for faster typing
     )
 
     return () => clearTimeout(timer)
