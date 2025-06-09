@@ -505,7 +505,7 @@ ${data.message}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8, delay: 0.8 }}
             >
-              <Card className="bg-gradient-to-r from-green-900/20 to-green-800/20 border-green-500/30 backdrop-blur-sm">
+              <Card className="bg-gray-800/50 border-purple-500/20 backdrop-blur-sm">
                 <CardContent className="p-6 text-center">
                   <MessageSquare className="h-8 w-8 text-green-400 mx-auto mb-3" />
                   <h3 className="font-semibold text-white mb-2">WhatsApp Response</h3>
