@@ -64,6 +64,7 @@ export default function Projects() {
       image: "/imperial_crest.png",
       category: "Investment Firm",
       year: "2024",
+      link: "https://theimperial-2.vercel.app/"
     },
     {
       title: "BeSpace",
@@ -73,6 +74,7 @@ export default function Projects() {
       image: "/bespace.png",
       category: "Interior Design",
       year: "2024",
+      link: "https://www.bespace.in/"
     },
     {
       title: "Tattoo Studio Portfolio",
@@ -82,6 +84,7 @@ export default function Projects() {
       image: "/tattoo_studio.png",
       category: "Creative Studio",
       year: "2024",
+      link: "https://www.darkinktattoostudios.in/"
     },
     {
       title: "TV Repair Services",
@@ -90,6 +93,18 @@ export default function Projects() {
       tech: ["Next.js", "Database", "Tracking System", "CRM"],
       image: "/tv_services.png",
       category: "Service Business",
+      year: "2024",
+      link: "https://manju-tech.vercel.app/"
+    },
+    {
+      title: "Ekatra Car Care",
+      description:
+        "Car care service website with booking system and service catalog.",
+      tech: ["Next.js", "React", "Tailwind CSS", "Booking System"],
+      image: "/ekatra_car_care.png",
+      category: "Service Business",
+      year: "2024",
+      link: "https://ekatra-flax.vercel.app/"
     },
   ]
 
@@ -146,152 +161,8 @@ export default function Projects() {
           </p>
         </motion.div>
 
-        {/* Personal Projects */}
-        <section className="mb-20">
-          <motion.div
-            initial={{ opacity: 0, x: -50 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="mb-12"
-          >
-            <h2 className="text-3xl font-bold mb-4 bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
-              Personal Projects
-            </h2>
-            <p className="text-gray-300">Passion projects that showcase my creativity and technical skills</p>
-          </motion.div>
-
-          <div className="grid lg:grid-cols-2 gap-8">
-            {personalProjects.map((project, index) => (
-              <motion.div
-                key={project.title}
-                initial={{ opacity: 0, y: 50 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.4 + index * 0.2 }}
-                className={project.featured ? "lg:col-span-2" : ""}
-              >
-                <Card className="bg-gray-800/50 border-purple-500/20 backdrop-blur-sm h-full group hover:border-purple-500/50 transition-all duration-300">
-                  <div className="relative overflow-hidden">
-                    <img
-                      src={project.image || "/placeholder.svg"}
-                      alt={project.title}
-                      className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-300"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-gray-900 to-transparent opacity-60" />
-                    <div className="absolute top-4 left-4">
-                      <Badge variant="outline" className="border-purple-500 text-purple-400">
-                        {project.category}
-                      </Badge>
-                    </div>
-                    <div className="absolute top-4 right-4">
-                      <Badge variant="outline" className="border-cyan-500 text-cyan-400">
-                        {project.year}
-                      </Badge>
-                    </div>
-                  </div>
-
-                  <CardHeader>
-                    <div className="flex items-start justify-between">
-                      <div>
-                        <CardTitle className="text-2xl text-purple-400 mb-2">{project.title}</CardTitle>
-                        <CardDescription className="text-gray-300 text-base">
-                          {project.featured ? project.longDescription : project.description}
-                        </CardDescription>
-                      </div>
-                    </div>
-                  </CardHeader>
-
-                  <CardContent className="space-y-4">
-                    <div className="flex flex-wrap gap-2">
-                      {project.tech.map((tech) => (
-                        <Badge key={tech} variant="outline" className="border-cyan-500/50 text-cyan-400">
-                          {tech}
-                        </Badge>
-                      ))}
-                    </div>
-
-                    <div className="flex gap-4">
-                      <a href={project.github} target="_blank" rel="noopener noreferrer">
-                        <Button
-                          size="sm"
-                          variant="outline"
-                          className="border-purple-500 text-purple-400 hover:bg-purple-500/10"
-                        >
-                          <Github className="mr-2 h-4 w-4" />
-                          Code
-                        </Button>
-                      </a>
-                      <a href={project.demo} target="_blank" rel="noopener noreferrer">
-                        <Button
-                          size="sm"
-                          className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700"
-                        >
-                          <ExternalLink className="mr-2 h-4 w-4" />
-                          Live Demo
-                        </Button>
-                      </a>
-                    </div>
-                  </CardContent>
-                </Card>
-              </motion.div>
-            ))}
-          </div>
-        </section>
-
-        {/* Work Projects */}
-        <section className="mb-20">
-          <motion.div
-            initial={{ opacity: 0, x: -50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-            className="mb-12"
-          >
-            <h2 className="text-3xl font-bold mb-4 bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent">
-              Professional Work
-            </h2>
-            <p className="text-gray-300">Projects developed during my professional experience</p>
-          </motion.div>
-
-          <div className="grid md:grid-cols-2 gap-8">
-            {workProjects.map((project, index) => (
-              <motion.div
-                key={project.title}
-                initial={{ opacity: 0, y: 50 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: index * 0.1 }}
-                viewport={{ once: true }}
-              >
-                <Card className="bg-gray-800/30 border-cyan-500/20 backdrop-blur-sm h-full group hover:border-cyan-500/50 transition-all duration-300">
-                  <CardHeader>
-                    <div className="flex items-start justify-between mb-2">
-                      <Badge variant="outline" className="border-cyan-500 text-cyan-400">
-                        {project.company}
-                      </Badge>
-                      <Badge variant="outline" className="border-gray-500 text-gray-400">
-                        {project.year}
-                      </Badge>
-                    </div>
-                    <CardTitle className="text-xl text-cyan-400">{project.title}</CardTitle>
-                    <CardDescription className="text-gray-300">{project.description}</CardDescription>
-                  </CardHeader>
-
-                  <CardContent>
-                    <div className="flex flex-wrap gap-2">
-                      {project.tech.map((tech) => (
-                        <Badge key={tech} variant="outline" className="border-blue-500/50 text-blue-400">
-                          {tech}
-                        </Badge>
-                      ))}
-                    </div>
-                  </CardContent>
-                </Card>
-              </motion.div>
-            ))}
-          </div>
-        </section>
-
         {/* Freelance Projects */}
-        <section>
+        <section className="mb-20">
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -304,7 +175,6 @@ export default function Projects() {
             </h2>
             <p className="text-gray-300">Client projects across various industries - 15+ successful collaborations</p>
           </motion.div>
-
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {freelanceProjects.map((project, index) => (
               <motion.div
@@ -329,12 +199,10 @@ export default function Projects() {
                       </Badge>
                     </div>
                   </div>
-
                   <CardHeader className="pb-2">
                     <CardTitle className="text-lg text-pink-400">{project.title}</CardTitle>
                     <CardDescription className="text-gray-300 text-sm">{project.description}</CardDescription>
                   </CardHeader>
-
                   <CardContent>
                     <div className="flex flex-wrap gap-1 mb-3">
                       {project.tech.slice(0, 3).map((tech) => (
@@ -355,6 +223,149 @@ export default function Projects() {
                         Client Project
                       </span>
                     </div>
+                    {project.link && (
+                      <div className="mt-4">
+                        <a href={project.link} target="_blank" rel="noopener noreferrer">
+                          <Button size="sm" className="bg-gradient-to-r from-pink-600 to-purple-600 hover:from-pink-700 hover:to-purple-700">
+                            <ExternalLink className="mr-2 h-4 w-4" />
+                            Visit Site
+                          </Button>
+                        </a>
+                      </div>
+                    )}
+                  </CardContent>
+                </Card>
+              </motion.div>
+            ))}
+          </div>
+        </section>
+
+        {/* Work Projects */}
+        <section className="mb-20">
+          <motion.div
+            initial={{ opacity: 0, x: -50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+            className="mb-12"
+          >
+            <h2 className="text-3xl font-bold mb-4 bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent">
+              Professional Work
+            </h2>
+            <p className="text-gray-300">Projects developed during my professional experience</p>
+          </motion.div>
+          <div className="grid md:grid-cols-2 gap-8">
+            {workProjects.map((project, index) => (
+              <motion.div
+                key={project.title}
+                initial={{ opacity: 0, y: 50 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: index * 0.1 }}
+                viewport={{ once: true }}
+              >
+                <Card className="bg-gray-800/30 border-cyan-500/20 backdrop-blur-sm h-full group hover:border-cyan-500/50 transition-all duration-300">
+                  <CardHeader>
+                    <div className="flex items-start justify-between mb-2">
+                      <Badge variant="outline" className="border-cyan-500 text-cyan-400">
+                        {project.company}
+                      </Badge>
+                      <Badge variant="outline" className="border-gray-500 text-gray-400">
+                        {project.year}
+                      </Badge>
+                    </div>
+                    <CardTitle className="text-xl text-cyan-400">{project.title}</CardTitle>
+                    <CardDescription className="text-gray-300">{project.description}</CardDescription>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="flex flex-wrap gap-2">
+                      {project.tech.map((tech) => (
+                        <Badge key={tech} variant="outline" className="border-blue-500/50 text-blue-400">
+                          {tech}
+                        </Badge>
+                      ))}
+                    </div>
+                  </CardContent>
+                </Card>
+              </motion.div>
+            ))}
+          </div>
+        </section>
+
+        {/* Personal Projects */}
+        <section>
+          <motion.div
+            initial={{ opacity: 0, x: -50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+            className="mb-12"
+          >
+            <h2 className="text-3xl font-bold mb-4 bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
+              Personal Projects
+            </h2>
+            <p className="text-gray-300">Passion projects that showcase my creativity and technical skills</p>
+          </motion.div>
+          <div className="grid lg:grid-cols-2 gap-8">
+            {personalProjects.map((project, index) => (
+              <motion.div
+                key={project.title}
+                initial={{ opacity: 0, y: 50 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: index * 0.1 }}
+                viewport={{ once: true }}
+                className={project.featured ? "lg:col-span-2" : ""}
+              >
+                <Card className="bg-gray-800/50 border-purple-500/20 backdrop-blur-sm h-full group hover:border-purple-500/50 transition-all duration-300">
+                  <div className="relative overflow-hidden">
+                    <img
+                      src={project.image || "/placeholder.svg"}
+                      alt={project.title}
+                      className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-300"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-gray-900 to-transparent opacity-60" />
+                    <div className="absolute top-4 left-4">
+                      <Badge variant="outline" className="border-purple-500 text-purple-400">
+                        {project.category}
+                      </Badge>
+                    </div>
+                    <div className="absolute top-4 right-4">
+                      <Badge variant="outline" className="border-cyan-500 text-cyan-400">
+                        {project.year}
+                      </Badge>
+                    </div>
+                  </div>
+                  <CardHeader>
+                    <div className="flex items-start justify-between">
+                      <div>
+                        <CardTitle className="text-2xl text-purple-400 mb-2">{project.title}</CardTitle>
+                        <CardDescription className="text-gray-300 text-base">
+                          {project.featured ? project.longDescription : project.description}
+                        </CardDescription>
+                      </div>
+                    </div>
+                  </CardHeader>
+                  <CardContent className="space-y-4">
+                    <div className="flex flex-wrap gap-2">
+                      {project.tech.map((tech) => (
+                        <Badge key={tech} variant="outline" className="border-cyan-500/50 text-cyan-400">
+                          {tech}
+                        </Badge>
+                      ))}
+                    </div>
+                    <div className="flex gap-4">
+                      <a href={project.github} target="_blank" rel="noopener noreferrer">
+                        <Button size="sm" variant="outline" className="border-purple-500 text-purple-400 hover:bg-purple-500/10">
+                          <Github className="mr-2 h-4 w-4" />
+                          Code
+                        </Button>
+                      </a>
+                      <a href={project.demo} target="_blank" rel="noopener noreferrer">
+                        <Button size="sm" className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700">
+                          <ExternalLink className="mr-2 h-4 w-4" />
+                          Live Demo
+                        </Button>
+                      </a>
+                    </div>
                   </CardContent>
                 </Card>
               </motion.div>
@@ -374,7 +385,6 @@ export default function Projects() {
             <h2 className="text-3xl font-bold mb-12 bg-gradient-to-r from-purple-400 to-cyan-400 bg-clip-text text-transparent">
               Project Statistics
             </h2>
-
             <div className="grid md:grid-cols-4 gap-8">
               <div className="text-center">
                 <div className="text-4xl font-bold text-purple-400 mb-2">20+</div>
