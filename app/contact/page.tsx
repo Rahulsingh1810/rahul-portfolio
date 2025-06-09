@@ -14,7 +14,6 @@ import {
   Github,
   Linkedin,
   MessageSquare,
-  Clock,
   CheckCircle,
   Building,
   Briefcase,
@@ -41,12 +40,55 @@ export default function Contact() {
     })
   }
 
+  const sendToWhatsApp = (data: typeof formData) => {
+    const phoneNumber = "917022244729" // Your WhatsApp number without + sign
+
+    // Format the message
+    const message = `
+🚀 *New Project Inquiry from Portfolio Website*
+
+👤 *Name:* ${data.name}
+📧 *Email:* ${data.email}
+📞 *Subject:* ${data.subject}
+
+💼 *Project Details:*
+• *Type:* ${data.projectType || "Not specified"}
+• *Budget:* ${data.budget || "Not specified"}
+• *Timeline:* ${data.timeline || "Not specified"}
+
+📝 *Message:*
+${data.message}
+
+---
+*Sent from Portfolio Contact Form*
+    `.trim()
+
+    // Encode the message for URL
+    const encodedMessage = encodeURIComponent(message)
+
+    // Create WhatsApp URL
+    const whatsappURL = `https://wa.me/${phoneNumber}?text=${encodedMessage}`
+
+    // Open WhatsApp in new tab
+    window.open(whatsappURL, "_blank")
+  }
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setIsSubmitting(true)
 
-    // Simulate form submission
-    await new Promise((resolve) => setTimeout(resolve, 2000))
+    // Validate required fields
+    if (!formData.name || !formData.email || !formData.subject || !formData.message) {
+      alert("Please fill in all required fields")
+      setIsSubmitting(false)
+      return
+    }
+
+    // Send to WhatsApp
+    sendToWhatsApp(formData)
+
+    // Simulate form processing
+    await new Promise((resolve) => setTimeout(resolve, 1000))
 
     setIsSubmitting(false)
     setSubmitted(true)
@@ -75,6 +117,7 @@ export default function Contact() {
       color: "text-purple-400",
       bgColor: "from-purple-500 to-pink-500",
       href: "mailto:rahul181002singh@gmail.com",
+      action: "Send Email",
     },
     {
       icon: Phone,
@@ -84,6 +127,7 @@ export default function Contact() {
       color: "text-cyan-400",
       bgColor: "from-cyan-500 to-blue-500",
       href: "tel:+917022244729",
+      action: "Call Now",
     },
     {
       icon: MapPin,
@@ -92,7 +136,8 @@ export default function Contact() {
       description: "Open to remote work",
       color: "text-pink-400",
       bgColor: "from-pink-500 to-purple-500",
-      href: "#",
+      href: "https://maps.google.com/?q=Bangalore,India",
+      action: "View on Map",
     },
   ]
 
@@ -140,6 +185,15 @@ export default function Contact() {
     },
   ]
 
+  // Quick WhatsApp contact function
+  const sendQuickWhatsApp = () => {
+    const phoneNumber = "917022244729"
+    const message = "Hi Rahul! I found your portfolio and would like to discuss a project with you."
+    const encodedMessage = encodeURIComponent(message)
+    const whatsappURL = `https://wa.me/${phoneNumber}?text=${encodedMessage}`
+    window.open(whatsappURL, "_blank")
+  }
+
   return (
     <div className="min-h-screen py-20 px-4">
       <div className="max-w-7xl mx-auto">
@@ -153,10 +207,26 @@ export default function Contact() {
           <h1 className="text-5xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-purple-400 via-pink-500 to-cyan-400 bg-clip-text text-transparent">
             Let's Work Together
           </h1>
-          <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+          <p className="text-xl text-gray-300 max-w-3xl mx-auto mb-8">
             Ready to bring your ideas to life? I'm here to help you build amazing digital experiences. Let's discuss
             your project and create something extraordinary together.
           </p>
+
+          {/* Quick WhatsApp Button */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+          >
+            <Button
+              onClick={sendQuickWhatsApp}
+              size="lg"
+              className="bg-green-600 hover:bg-green-700 text-white font-semibold mb-8"
+            >
+              <MessageSquare className="mr-2 h-5 w-5" />
+              Quick WhatsApp Message
+            </Button>
+          </motion.div>
         </motion.div>
 
         <div className="grid lg:grid-cols-3 gap-12">
@@ -174,7 +244,7 @@ export default function Contact() {
                     Send Me a Message
                   </CardTitle>
                   <CardDescription className="text-gray-300">
-                    Fill out the form below and I'll get back to you within 24 hours.
+                    Fill out the form below and it will be sent directly to my WhatsApp for quick response.
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
@@ -185,10 +255,12 @@ export default function Contact() {
                       className="text-center py-12"
                     >
                       <CheckCircle className="h-16 w-16 text-green-400 mx-auto mb-4" />
-                      <h3 className="text-2xl font-bold text-green-400 mb-2">Message Sent!</h3>
-                      <p className="text-gray-300 mb-4">Thank you for reaching out. I'll get back to you soon!</p>
+                      <h3 className="text-2xl font-bold text-green-400 mb-2">Message Sent to WhatsApp!</h3>
+                      <p className="text-gray-300 mb-4">
+                        Your message has been sent to my WhatsApp. I'll get back to you soon!
+                      </p>
                       <Badge variant="outline" className="border-green-500 text-green-400">
-                        Expected response: Within 24 hours
+                        Expected response: Within 2-4 hours
                       </Badge>
                     </motion.div>
                   ) : (
@@ -323,17 +395,17 @@ export default function Contact() {
                       <Button
                         type="submit"
                         disabled={isSubmitting}
-                        className="w-full bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-200 disabled:opacity-50"
+                        className="w-full bg-gradient-to-r from-green-600 to-green-700 hover:from-green-700 hover:to-green-800 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-200 disabled:opacity-50"
                       >
                         {isSubmitting ? (
                           <>
                             <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white mr-2"></div>
-                            Sending Message...
+                            Sending to WhatsApp...
                           </>
                         ) : (
                           <>
-                            <Send className="mr-2 h-4 w-4" />
-                            Send Message
+                            <MessageSquare className="mr-2 h-4 w-4" />
+                            Send via WhatsApp
                           </>
                         )}
                       </Button>
@@ -361,18 +433,30 @@ export default function Contact() {
                     <motion.a
                       key={info.title}
                       href={info.href}
+                      target={info.title === "Location" ? "_blank" : "_self"}
+                      rel={info.title === "Location" ? "noopener noreferrer" : undefined}
                       whileHover={{ scale: 1.02 }}
-                      className="flex items-start space-x-4 p-4 rounded-lg bg-gray-700/30 hover:bg-gray-700/50 transition-all duration-200 cursor-pointer"
+                      whileTap={{ scale: 0.98 }}
+                      className="flex items-start space-x-4 p-4 rounded-lg bg-gray-700/30 hover:bg-gray-700/50 transition-all duration-200 cursor-pointer group"
                     >
                       <div
-                        className={`w-12 h-12 bg-gradient-to-r ${info.bgColor} rounded-full flex items-center justify-center flex-shrink-0`}
+                        className={`w-12 h-12 bg-gradient-to-r ${info.bgColor} rounded-full flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-200`}
                       >
                         <info.icon className="h-6 w-6 text-white" />
                       </div>
-                      <div>
-                        <h3 className={`font-semibold ${info.color}`}>{info.title}</h3>
-                        <p className="text-white font-medium">{info.value}</p>
-                        <p className="text-gray-400 text-sm">{info.description}</p>
+                      <div className="flex-1">
+                        <h3 className={`font-semibold ${info.color} group-hover:text-white transition-colors`}>
+                          {info.title}
+                        </h3>
+                        <p className="text-white font-medium group-hover:text-gray-200 transition-colors">
+                          {info.value}
+                        </p>
+                        <p className="text-gray-400 text-sm group-hover:text-gray-300 transition-colors">
+                          {info.description}
+                        </p>
+                        <p className="text-xs text-purple-400 mt-1 opacity-0 group-hover:opacity-100 transition-opacity">
+                          Click to {info.action}
+                        </p>
                       </div>
                     </motion.a>
                   ))}
@@ -421,12 +505,12 @@ export default function Contact() {
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8, delay: 0.8 }}
             >
-              <Card className="bg-gradient-to-r from-purple-900/20 to-pink-900/20 border-purple-500/30 backdrop-blur-sm">
+              <Card className="bg-gradient-to-r from-green-900/20 to-green-800/20 border-green-500/30 backdrop-blur-sm">
                 <CardContent className="p-6 text-center">
-                  <Clock className="h-8 w-8 text-purple-400 mx-auto mb-3" />
-                  <h3 className="font-semibold text-white mb-2">Quick Response</h3>
+                  <MessageSquare className="h-8 w-8 text-green-400 mx-auto mb-3" />
+                  <h3 className="font-semibold text-white mb-2">WhatsApp Response</h3>
                   <p className="text-gray-300 text-sm">
-                    I typically respond to messages within 24 hours. For urgent projects, feel free to call directly.
+                    Messages sent via the form go directly to my WhatsApp for instant notifications and quick responses.
                   </p>
                 </CardContent>
               </Card>
@@ -459,6 +543,14 @@ export default function Contact() {
               >
                 <Linkedin className="h-6 w-6" />
               </motion.a>
+              <motion.a
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.95 }}
+                onClick={sendQuickWhatsApp}
+                className="w-12 h-12 bg-gray-800 rounded-full flex items-center justify-center hover:bg-green-600 transition-colors cursor-pointer"
+              >
+                <MessageSquare className="h-6 w-6" />
+              </motion.a>
             </motion.div>
           </div>
         </div>
@@ -477,9 +569,9 @@ export default function Contact() {
           <div className="grid md:grid-cols-2 gap-6">
             {[
               {
-                question: "What's your typical project timeline?",
+                question: "How quickly do you respond to WhatsApp messages?",
                 answer:
-                  "Project timelines vary based on complexity. Simple websites take 1-2 weeks, while complex applications can take 1-3 months. I'll provide a detailed timeline during our initial consultation.",
+                  "I typically respond to WhatsApp messages within 2-4 hours during business hours (9 AM - 8 PM IST). For urgent projects, I'm available for immediate consultation.",
               },
               {
                 question: "Do you provide ongoing support?",
@@ -494,7 +586,7 @@ export default function Contact() {
               {
                 question: "How do you handle project communication?",
                 answer:
-                  "I provide regular updates through your preferred communication channel (email, Slack, WhatsApp). You'll receive weekly progress reports and have direct access to me throughout the project.",
+                  "I primarily use WhatsApp for quick communication and provide regular updates through your preferred channel. You'll receive weekly progress reports and have direct access to me throughout the project.",
               },
             ].map((faq, index) => (
               <Card key={index} className="bg-gray-800/30 border-gray-700/50 backdrop-blur-sm">
