@@ -46,8 +46,8 @@ export default function Projects() {
         "AirCursor demonstrates the power of computer vision in creating intuitive human-computer interfaces. Using Python and OpenCV, this application tracks hand movements to control the mouse cursor, includes a virtual painting feature, and even counts exercise repetitions.",
       tech: ["Python", "OpenCV", "Computer Vision", "MediaPipe", "NumPy"],
       image: "/virtual_mouse.png",
-      github: "https://github.com/Rahulsingh1810/aircursor",
-      demo: "https://aircursor-demo.vercel.app/",
+      github: "",
+      demo: "",
       featured: false,
       category: "Desktop Application",
       status: "Completed",
@@ -63,7 +63,7 @@ export default function Projects() {
       tech: ["Next.js", "TypeScript", "Tailwind CSS", "Financial APIs"],
       image: "/imperial_crest.png",
       category: "Investment Firm",
-      year: "2024",
+      year: "2025",
       link: "https://theimperial-2.vercel.app/"
     },
     {
@@ -73,7 +73,7 @@ export default function Projects() {
       tech: ["React.js", "Framer Motion", "Image Optimization", "CMS"],
       image: "/bespace.png",
       category: "Interior Design",
-      year: "2024",
+      year: "2025",
       link: "https://www.bespace.in/"
     },
     {
@@ -103,7 +103,7 @@ export default function Projects() {
       tech: ["Next.js", "React", "Tailwind CSS", "Booking System"],
       image: "/ekatra_car_care.png",
       category: "Service Business",
-      year: "2024",
+      year: "2025",
       link: "https://ekatra-flax.vercel.app/"
     },
   ]

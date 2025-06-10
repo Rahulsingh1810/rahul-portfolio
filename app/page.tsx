@@ -23,8 +23,19 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Badge } from "@/components/ui/badge"
 import { useEffect, useState } from "react"
 import Link from "next/link"
+import { LucideIcon } from "lucide-react"
 
-const FloatingIcon = ({ icon: Icon, delay = 0, size = 24, className = "" }) => {
+const FloatingIcon = ({
+  icon: Icon,
+  delay = 0,
+  size = 24,
+  className = "",
+}: {
+  icon: LucideIcon
+  delay?: number
+  size?: number
+  className?: string
+}) => {
   return (
     <motion.div
       className={`absolute text-purple-400/30 ${className}`}
@@ -48,7 +59,15 @@ const FloatingIcon = ({ icon: Icon, delay = 0, size = 24, className = "" }) => {
   )
 }
 
-const BouncingIcon = ({ icon: Icon, delay = 0, className = "" }) => {
+const BouncingIcon = ({
+  icon: Icon,
+  delay = 0,
+  className = "",
+}: {
+  icon: LucideIcon
+  delay?: number
+  className?: string
+}) => {
   return (
     <motion.div
       className={`absolute text-cyan-400/40 ${className}`}
@@ -69,7 +88,17 @@ const BouncingIcon = ({ icon: Icon, delay = 0, className = "" }) => {
   )
 }
 
-const OrbitingIcon = ({ icon: Icon, radius = 100, duration = 10, delay = 0 }) => {
+const OrbitingIcon = ({
+  icon: Icon,
+  radius = 100,
+  duration = 10,
+  delay = 0,
+}: {
+  icon: LucideIcon
+  radius?: number
+  duration?: number
+  delay?: number
+}) => {
   return (
     <motion.div
       className="absolute text-pink-400/30"
@@ -109,7 +138,13 @@ const OrbitingIcon = ({ icon: Icon, radius = 100, duration = 10, delay = 0 }) =>
   )
 }
 
-const TypewriterText = ({ text, delay = 1000 }) => {
+const TypewriterText = ({
+  text,
+  delay = 0,
+}: {
+  text: string
+  delay?: number
+}) => {
   const [displayText, setDisplayText] = useState("")
   const [currentIndex, setCurrentIndex] = useState(0)
 
@@ -121,7 +156,7 @@ const TypewriterText = ({ text, delay = 1000 }) => {
           setCurrentIndex((prev) => prev + 1)
         }
       },
-      delay + currentIndex * 1, // Reduced from 100 to 50 for faster typing
+      delay + currentIndex * 50, // Reduced from 100 to 50 for faster typing
     )
 
     return () => clearTimeout(timer)
