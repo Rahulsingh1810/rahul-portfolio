@@ -374,7 +374,7 @@ export default function AIChatbot() {
                         <div className="flex items-center space-x-2">
                           <Loader2 className="h-4 w-4 animate-spin text-purple-400" />
                           <span className="text-sm text-gray-300">
-                            {conversationEnded ? "Sending to Rahul..." : "Thinking..."}
+                            {conversationEnded ? "Sending to Rahul..." : "Typing..."}
                           </span>
                         </div>
                       </div>
