@@ -4,6 +4,7 @@ import { Inter } from "next/font/google"
 import "./globals.css"
 import Navbar from "@/components/navbar"
 import AIChatbot from "@/components/ai-chatbot"
+import LenisProvider from "@/components/LenisProvider"
 
 const inter = Inter({ subsets: ["latin"] })
 
@@ -24,9 +25,11 @@ export default function RootLayout({
       <body
         className={`${inter.className} bg-gradient-to-br from-gray-900 via-purple-900 to-black text-white min-h-screen`}
       >
+        <LenisProvider>
         <Navbar />
         <main className="pt-16">{children}</main>
         <AIChatbot />
+        </LenisProvider>
       </body>
     </html>
   )
